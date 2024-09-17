@@ -36,15 +36,14 @@ app.post("/create", upload.single("image"), async (req, res) => {
     treatment,
     profile: req.file.buffer,
   });
-  res.send(createDetails);
+  res.redirect("/inputdetails");
 });
 
 app.post("/scarch", async (req, res) => {
   let treatment = req.body.treatment;
-  let hospitals = await hospitalModel.findOne({ treatment });
-  console.log(hospitals);
-  res.redirect("/");
-}); 
+  let hospitals = await hospitalModel.find({ treatment });
+  res.render("hospitals", { hospitals });
+});
 
 const port = process.env.PORT;
 app.listen(port, (error) => {

@@ -650,8 +650,8 @@ textarea.input {
 
 .custom-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content:space-between; /* Align items to the left */
+  gap: 20px; /* Add space between containers */
   padding: 20px;
 }
 
@@ -659,7 +659,6 @@ textarea.input {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
   width: 300px;
   text-align: center;
   transition: transform 0.3s ease;
@@ -702,7 +701,7 @@ textarea.input {
 }
 
 .custom-aboutMe {
-  background-color: #0059a2;
+  background-color: #87ceeb;
   border: none;
   padding: 10px 20px;
   border-radius: 20px;
@@ -713,5 +712,5 @@ textarea.input {
 }
 
 .custom-aboutMe:hover {
-  opacity: 0.9;
+  background-color: #00bfff;
 }

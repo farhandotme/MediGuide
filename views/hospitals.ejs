@@ -29,7 +29,7 @@
       <!-- Navigation Bar -->
       <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-          <a class="navbar-brand" href="#">MediGuide</a>
+          <a class="navbar-brand" href="/">MediGuide</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -96,23 +96,26 @@
       </section>
 
       <!-- Hospitals Section-->
-
-      <div class="custom-container">
-        <div class="custom-card">
-          <div class="custom-card-content">
-            <div class="custom-image">
-              <img src="images/Pratiksha.jpg" alt="Pratiksha Hospital" />
-            </div>
-            <div class="custom-name-profession">
-              <span class="custom-name">Pratiksha Hospital</span>
-              <span class="custom-profession">Guwahati</span>
-            </div>
-            <div class="custom-button">
-              <button class="custom-aboutMe">About Me</button>
+       <% if (typeof hospitals !== 'undefined' && hospitals.length > 0) { %>
+        <% hospitals.forEach((hospital) => { %>
+          <div class="custom-container">
+            <div class="custom-card">
+              <div class="custom-card-content">
+                <div class="custom-image">
+                  <img src="data:image/jpeg;base64,<%= hospital.profile.toString('base64') %>" alt="<%= hospital.name %>">
+                </div>
+                <div class="custom-name-profession">
+                  <span class="custom-name"><%= hospital.name %></span>
+                  <span class="custom-profession"><%= hospital.address %></span>
+                </div>
+                <div class="custom-button">
+                  <button class="custom-aboutMe">About Me</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        <% })%>
+       <% } %>
 
       <!-- Footer Section -->
       <footer class="bg-light text-center text-lg-start mt-5">
