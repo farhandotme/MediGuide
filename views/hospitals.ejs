@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediGuide</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Link CSS-->
+    <link href="/stylesheets/style.css" rel="stylesheet" />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <!-- Fontawesome CDN Link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="Website">
+      <!-- Navigation Bar -->
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <a class="navbar-brand" href="#">MediGuide</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#hero-text">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Hospital">Hospitals</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#AboutText">About Us</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#contact-info">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Header Section -->
+      <section class="header-section">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <h1 class="hero-text">
+                Find the Perfect Hospital for Your Health Needs
+              </h1>
+              <p class="mt-3">
+                Search for specialized care tailored to your condition, and get
+                the best treatment options instantly.
+              </p>
+              <!-- search box-->
+              <form action="/scarch" method="post">
+                <div class="search-container">
+                  <input
+                    type="text"
+                    name="treatment"
+                    class="search-box"
+                    placeholder="Search..."
+                  />
+                  <button type="submit" class="search-btn">Search</button>
+                </div>
+                <!-- <input type="text" placeholder="Search here..." name="treatment">
+                        <button type="submit"><img src="Images/search.png"></button> -->
+              </form>
+            </div>
+            <div class="col-md-6 text-center">
+              <img src="images/doctor.png" alt="h4si" class="img-fluid" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hospitals Section-->
+
+      <div class="custom-container">
+        <div class="custom-card">
+          <div class="custom-card-content">
+            <div class="custom-image">
+              <img src="images/Pratiksha.jpg" alt="Pratiksha Hospital" />
+            </div>
+            <div class="custom-name-profession">
+              <span class="custom-name">Pratiksha Hospital</span>
+              <span class="custom-profession">Guwahati</span>
+            </div>
+            <div class="custom-button">
+              <button class="custom-aboutMe">About Me</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Section -->
+      <footer class="bg-light text-center text-lg-start mt-5">
+        <div class="text-center p-3">© 2024 Hasi. All rights reserved.</div>
+      </footer>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="/javascripts/swiper.js"></script>
+    <script src="/javascripts/form.js"></script>
+    <script src=""></script>
+  </body>
+</html>
+
+<!-- class="search-bar" id="Searchbox" -->

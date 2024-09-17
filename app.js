@@ -21,6 +21,10 @@ app.get("/inputdetails", (req, res) => {
   res.render("inputdetails");
 });
 
+app.get("/hospitals", (req, res) => {
+  res.render("hospitals");
+});
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 app.post("/create", upload.single("image"), async (req, res) => {
