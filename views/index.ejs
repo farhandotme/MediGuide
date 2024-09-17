@@ -18,7 +18,6 @@
 
 <body>
   <div class="Website">
-
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
@@ -42,7 +41,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#contact-info">Contact</a>
                     </li>
-                    
                 </ul>
             </div>
         </div>
@@ -57,9 +55,13 @@
                     <p class="mt-3">Search for specialized care tailored to your condition, and get the best treatment options instantly.
                     </p>
                    <!-- search box-->
-                    <form action="/scarch" class="search-bar" id="Searchbox" method="post">
-                        <input type="text" placeholder="Search here..." name="treatment">
-                        <button type="submit"><img src="Images/search.png"></button>
+                    <form action="/scarch"  method="post">
+                      <div class="search-container">
+                        <input type="text" name="treatment" class="search-box" placeholder="Search..." />
+                        <button type="submit" class="search-btn">Search</button>
+                      </div>
+                        <!-- <input type="text" placeholder="Search here..." name="treatment">
+                        <button type="submit"><img src="Images/search.png"></button> -->
                     </form>
                 </div>
                 <div class="col-md-6 text-center">
@@ -285,16 +287,10 @@
           </div>
         </div>
       </div>
-
       <div class="contact-form">
         <span class="circle one"></span>
         <span class="circle two"></span>
-
         <form action="" autocomplete="off">
-    
-         
-
-
           <h3 class="title">Contact us</h3>
           <div class="input-container">
             <input type="text" name="name" class="input" />
@@ -340,7 +336,7 @@
    <script src="/javascripts/swiper.js"></script>
    <script src="/javascripts/form.js"></script>
    <script src=""> </script>
-   
 </body>
-
 </html>
+
+<!-- class="search-bar" id="Searchbox" -->
