@@ -42,7 +42,7 @@ app.post("/create", upload.single("image"), async (req, res) => {
 app.post("/scarch", async (req, res) => {
   let treatment = req.body.treatment;
   let hospitals = await hospitalModel.find({ treatment });
-  res.render("hospitals", { hospitals });
+  res.render("hospitals", { hospitals , treatment});
 });
 
 const port = process.env.PORT;
