@@ -97,7 +97,7 @@
 
       <!-- Hospitals Section-->
        <% if (typeof hospitals !== 'undefined' && hospitals.length > 0) { %>
-        <h3 class="text-center"> Search Results for "<%= treatment %>"</h3>
+        <h4 class="text-center"> Search Results for "<b><%= treatment %></b>"</h4>
         <% hospitals.forEach((hospital) => { %>
           <div class="custom-container">
             <div class="custom-card">
@@ -119,7 +119,7 @@
 
        <% } else { %>
         <div class="text-center">
-          <h3>No hospitals found for "<%= treatment %>"</h3>
+          <h4>No hospitals found for '<%= treatment %>'</h4>
         </div>
         <% } %>
 
