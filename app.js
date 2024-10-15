@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/inputdetails", (req, res) => {
-  res.render("inputdetails");
+  res.render("inputDetails");
 });
 
 app.get("/hospitals", (req, res) => {
@@ -36,13 +36,13 @@ app.post("/create", upload.single("image"), async (req, res) => {
     treatment,
     profile: req.file.buffer,
   });
-  res.redirect("/inputdetails");
+  res.redirect("/inputDetails");
 });
 
 app.post("/scarch", async (req, res) => {
   let treatment = req.body.treatment;
   let hospitals = await hospitalModel.find({ treatment });
-  res.render("hospitals", { hospitals , treatment});
+  res.render("hospitals", { hospitals, treatment });
 });
 
 const port = process.env.PORT;
