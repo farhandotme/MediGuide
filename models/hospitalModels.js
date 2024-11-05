@@ -10,9 +10,11 @@ const hospitalSchema = mongoose.Schema({
   address: {
     type: String,
   },
-  treatment: {
-    type: String,
-  },
+  treatment: [
+    {
+      name: { type: String, required: true },
+    },
+  ],
   profile: {
     type: Buffer,
   },

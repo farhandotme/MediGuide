@@ -27,28 +27,55 @@ app.get("/hospitals", (req, res) => {
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
+
 app.post("/create", upload.single("image"), async (req, res) => {
-  let { name, address, phoneNo, treatment } = req.body;
-  const createDetails = await hospitalModel.create({
-    name,
-    phoneNo,
-    address,
-    treatment,
-    profile: req.file.buffer,
-  });
-  res.redirect("/inputDetails");
+  try {
+    let { name, address, phoneNo, treatmentName } = req.body;
+    const treatments = treatmentName.map((name) => ({
+      name,
+    }));
+    const createDetails = await hospitalModel.create({
+      name,
+      phoneNo,
+      address,
+      treatment: treatments,
+      profile: req.file ? req.file.buffer : undefined,
+    });
+    res.redirect("/inputDetails");
+  } catch (error) {
+    console.error("Error creating hospital:", error);
+    res.status(500).send("Failed to create hospital.");
+  }
 });
 
-app.post("/scarch", async (req, res) => {
-  let treatment = req.body.treatment;
-  let hospitals = await hospitalModel.find({ treatment });
-  res.render("hospitals", { hospitals, treatment });
+
+// app.post("/search", async (req, res) => {
+//   let treatment = req.body.treatment;
+//   let hospitals = await hospitalModel.find({ treatment });
+//   res.render("hospitals", { hospitals, treatment });
+// });
+
+app.post("/search", async (req, res) => {
+  const treatmentName = req.body.treatment; // Assuming treatment is just a string name here
+  try {
+    const hospitals = await hospitalModel.find({
+      "treatment.name": treatmentName,
+    });
+    res.render("hospitals", { hospitals, treatment: treatmentName });
+  } catch (error) {
+    console.error("Error searching for hospitals:", error);
+    res.status(500).send("Error searching for hospitals");
+  }
 });
+
+
+
+
 
 const port = process.env.PORT;
 app.listen(port, (error) => {
   try {
-    console.log(`Your app is running on the port ${port}`);
+    console.log(`Your app is running on the port http://localhost:${port}`);
   } catch (error) {
     throw error;
   }
