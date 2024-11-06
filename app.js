@@ -48,15 +48,9 @@ app.post("/create", upload.single("image"), async (req, res) => {
   }
 });
 
-
-// app.post("/search", async (req, res) => {
-//   let treatment = req.body.treatment;
-//   let hospitals = await hospitalModel.find({ treatment });
-//   res.render("hospitals", { hospitals, treatment });
-// });
-
 app.post("/search", async (req, res) => {
-  const treatmentName = req.body.treatment; // Assuming treatment is just a string name here
+  const treatmentName = req.body.treatment.toLowerCase();
+  
   try {
     const hospitals = await hospitalModel.find({
       "treatment.name": treatmentName,
@@ -67,10 +61,6 @@ app.post("/search", async (req, res) => {
     res.status(500).send("Error searching for hospitals");
   }
 });
-
-
-
-
 
 const port = process.env.PORT;
 app.listen(port, (error) => {
