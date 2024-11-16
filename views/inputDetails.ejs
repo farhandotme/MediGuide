@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Hospital Details</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
@@ -16,10 +16,9 @@
     >
       <h2 class="text-2xl font-semibold text-center mb-4">Add New Hospital</h2>
 
+      <!-- Hospital Name -->
       <div>
-        <label for="name" class="block text-gray-700 font-medium mb-1"
-          >Hospital Name:</label
-        >
+        <label for="name" class="block text-gray-700 font-medium mb-1">Hospital Name:</label>
         <input
           type="text"
           id="name"
@@ -29,12 +28,11 @@
         />
       </div>
 
+      <!-- Phone Number -->
       <div>
-        <label for="phoneNo" class="block text-gray-700 font-medium mb-1"
-          >Phone Number:</label
-        >
+        <label for="phoneNo" class="block text-gray-700 font-medium mb-1">Phone Number:</label>
         <input
-          type="number"
+          type="text"
           id="phoneNo"
           name="phoneNo"
           required
@@ -42,10 +40,9 @@
         />
       </div>
 
+      <!-- Address -->
       <div>
-        <label for="address" class="block text-gray-700 font-medium mb-1"
-          >Address:</label
-        >
+        <label for="address" class="block text-gray-700 font-medium mb-1">Address:</label>
         <textarea
           id="address"
           name="address"
@@ -55,22 +52,27 @@
         ></textarea>
       </div>
 
+      <!-- Treatments -->
       <div id="treatments" class="space-y-4">
         <div class="treatment p-4 bg-gray-50 rounded-lg">
-          <label
-            for="treatmentName"
-            class="block text-gray-700 font-medium mb-1"
-            >Treatment Name:</label
-          >
+          <label for="treatmentName" class="block text-gray-700 font-medium mb-1">Treatment Name:</label>
           <input
             type="text"
-            name="treatmentName"
+            name="treatmentName[]"
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <label for="treatmentPrice" class="block text-gray-700 font-medium mb-1">Treatment Price:</label>
+          <input
+            type="text"
+            name="treatmentPrice[]"
             required
             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
       </div>
 
+      <!-- Add Treatment Button -->
       <button
         type="button"
         onclick="addTreatment()"
@@ -79,10 +81,31 @@
         Add New Treatment
       </button>
 
+      <!-- Map Location -->
       <div>
-        <label for="profile" class="block text-gray-700 font-medium mb-1"
-          >Profile Picture:</label
-        >
+        <label for="mapLocation" class="block text-gray-700 font-medium mb-1">Map Location:</label>
+        <input
+          type="text"
+          id="mapLocation"
+          name="mapLocation"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <!-- Link -->
+      <div>
+        <label for="link" class="block text-gray-700 font-medium mb-1">Hospital Website Link:</label>
+        <input
+          type="text"
+          id="link"
+          name="link"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <!-- Profile Image -->
+      <div>
+        <label for="profile" class="block text-gray-700 font-medium mb-1">Profile Picture:</label>
         <input
           type="file"
           id="file"
@@ -91,6 +114,7 @@
         />
       </div>
 
+      <!-- Submit Button -->
       <button
         type="submit"
         class="w-full py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 transition"
@@ -111,9 +135,21 @@
           "space-y-2"
         );
         newTreatment.innerHTML = `
-        <label class="block text-gray-700 font-medium mb-1">Treatment Name:</label>
-        <input type="text" name="treatmentName[]" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      `;
+          <label class="block text-gray-700 font-medium mb-1">Treatment Name:</label>
+          <input
+            type="text"
+            name="treatmentName[]"
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <label class="block text-gray-700 font-medium mb-1">Treatment Price:</label>
+          <input
+            type="text"
+            name="treatmentPrice[]"
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        `;
         treatmentsDiv.appendChild(newTreatment);
       }
     </script>

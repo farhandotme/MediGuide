@@ -22,6 +22,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body>
@@ -84,8 +85,6 @@
                   />
                   <button type="submit" class="search-btn">Search</button>
                 </div>
-                <!-- <input type="text" placeholder="Search here..." name="treatment">
-                        <button type="submit"><img src="Images/search.png"></button> -->
               </form>
             </div>
             <div class="col-md-6 text-center">
@@ -96,32 +95,65 @@
       </section>
 
       <!-- Hospitals Section-->
-       <% if (typeof hospitals !== 'undefined' && hospitals.length > 0) { %>
-        <h4 class="text-center"> Search Results for "<b><%= treatment %></b>"</h4>
-        <% hospitals.forEach((hospital) => { %>
-          <div class="custom-container">
-            <div class="custom-card">
-              <div class="custom-card-content">
-                <div class="custom-image">
-                  <img src="data:image/jpeg;base64,<%= hospital.profile.toString('base64') %>" alt="<%= hospital.name %>">
-                </div>
-                <div class="custom-name-profession">
-                  <span class="custom-name"><%= hospital.name %></span>
-                  <span class="custom-profession"><%= hospital.address %></span>
-                </div>
-                <div class="custom-button">
-                  <button class="custom-aboutMe">About Me</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% }) %>
+      <% if (typeof hospitals !== 'undefined' && hospitals.length > 0) { %>
+      <h4 class="text-center text-xl mb-4">
+        Search Results for "<b><%= treatment %></b>"
+      </h4>
 
-       <% } else { %>
-        <div class="text-center">
-          <h4>No hospitals found for '<b><%= treatment %></b>'</h4>
+      <!-- Container for the hospital cards aligned to the left -->
+      <div class="flex flex-wrap gap-4 ml-4 justify-start">
+        <% hospitals.forEach((hospital) => { %>
+        <div
+          class="w-80 bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden"
+        >
+          <!-- Hospital Image -->
+          <div class="w-full h-70 bg-gray-200">
+            <img
+              src="data:image/jpeg;base64,<%= hospital.profile.toString('base64') %>"
+              alt="<%= hospital.name %>"
+              class="object-cover w-full h-full"
+            />
+          </div>
+
+          <!-- Hospital Name and Address -->
+          <div class="p-2">
+            <h5 class="text-md font-semibold text-gray-800 truncate">
+              <%= hospital.name %>
+            </h5>
+            <p class="text-gray-600 text-sm mt-1 truncate">
+              <%= hospital.address %>
+            </p>
+          </div>
+
+          <!-- Buttons for Directions, Appointment, and About Me -->
+          <div class="flex justify-between px-2 pb-2">
+            <!-- Directions Button -->
+            <button
+              class="bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-600 transition-all text-xs"
+              onclick="window.open('<%= hospital.mapLocation %>', '_blank')"
+            >
+              Directions
+            </button>
+
+            <!-- Appointment Button -->
+            <button
+              class="bg-blue-500 text-white px-5 py-1 rounded-md hover:bg-blue-600 transition-all text-xs"
+              onclick="window.open('<%= hospital.link %>', '_blank')"
+            >
+              Appointment
+            </button>
+          </div>
+
+          <!-- About Me Button -->
+          
         </div>
-        <% } %>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <p class="text-center text-lg text-gray-700">
+        No results found for "<b><%= treatment %></b>".
+      </p>
+      <% } %>
 
       <!-- Footer Section -->
       <footer class="bg-light text-center text-lg-start mt-5">

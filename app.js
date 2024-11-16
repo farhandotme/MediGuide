@@ -10,7 +10,7 @@ connectDb();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
@@ -30,18 +30,34 @@ const upload = multer({ storage });
 
 app.post("/create", upload.single("image"), async (req, res) => {
   try {
-    let { name, address, phoneNo, treatmentName } = req.body;
-    const treatments = treatmentName.map((name) => ({
+    const {
       name,
+      phoneNo,
+      address,
+      treatmentName,
+      treatmentPrice,
+      mapLocation,
+      link,
+    } = req.body;
+
+    // Create treatment array with name and price
+    const treatments = treatmentName.map((name, index) => ({
+      name,
+      price: treatmentPrice[index],
     }));
+
+    // Create hospital record in the database
     const createDetails = await hospitalModel.create({
       name,
       phoneNo,
       address,
       treatment: treatments,
-      profile: req.file ? req.file.buffer : undefined,
+      mapLocation, // Added mapLocation field
+      link, // Added link field
+      profile: req.file ? req.file.buffer : undefined, // Profile image
     });
-    res.redirect("/inputDetails");
+
+    res.redirect("/inputdetails");
   } catch (error) {
     console.error("Error creating hospital:", error);
     res.status(500).send("Failed to create hospital.");
@@ -50,12 +66,13 @@ app.post("/create", upload.single("image"), async (req, res) => {
 
 app.post("/search", async (req, res) => {
   const treatmentName = req.body.treatment.toLowerCase();
-  
+
   try {
     const hospitals = await hospitalModel.find({
-      "treatment.name": treatmentName,
+      "treatment.name": { $regex: new RegExp(treatmentName, "i") },
     });
-    res.render("hospitals", { hospitals, treatment: treatmentName });
+
+    res.render("hospitals", { hospitals, treatment: treatmentName }); 
   } catch (error) {
     console.error("Error searching for hospitals:", error);
     res.status(500).send("Error searching for hospitals");
@@ -63,10 +80,6 @@ app.post("/search", async (req, res) => {
 });
 
 const port = process.env.PORT;
-app.listen(port, (error) => {
-  try {
-    console.log(`Your app is running on the port http://localhost:${port}`);
-  } catch (error) {
-    throw error;
-  }
+app.listen(port, () => {
+  console.log(`Your app is running on the port http://localhost:${port}`);
 });

@@ -2,342 +2,372 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MediGuide</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Link CSS-->
-    <link href="/stylesheets/style.css" rel="stylesheet">
-     <!-- Link Swiper's CSS -->
-     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-     <!-- Fontawesome CDN Link -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEDIGUIDE</title>
+
+
+
+  <!-- Add Font Awesome for search icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Link CSS-->
+  <link href="/stylesheets/style.css" rel="stylesheet">
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 
 <body>
-  <div class="Website">
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">MediGuide</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#hero-text">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Hospital">Hospitals</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#AboutText">About Us</a>
-                    </li>
-                
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact-info">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+  <header>
+    <div class="logo">
+      <h1><i class="fas fa-stethoscope"></i> MEDIGUIDE</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#Hospital">Hospitals</a></li>
+        <li><a href="#contact-form">Contact Us</a></li>
+      </ul>
     </nav>
+  </header>
 
-    <!-- Header Section -->
-    <section class="header-section">
-        <div class="container">
-            <div class="row align-items-center" >
-                <div class="col-md-6">
-                    <h1 class="hero-text">Find the Perfect Hospital for Your Health Needs</h1>
-                    <p class="mt-3">Search for specialized care tailored to your condition, and get the best treatment options instantly.
-                    </p>
-                   <!-- search box-->
-                    <form action="/search"  method="post">
-                      <div class="search-container">
-                        <input type="text" name="treatment" class="search-box" placeholder="Search..." />
-                        <button type="submit" class="search-btn">Search</button>
-                      </div>
-                        <!-- <input type="text" placeholder="Search here..." name="treatment">
-                        <button type="submit"><img src="Images/search.png"></button> -->
-                    </form>
-                </div>
-                <div class="col-md-6 text-center">
-                    <img src="images/doctor.png" alt="h4si" class="img-fluid">
-                </div>
-            </div>
-        </div>
-    </section>
-  
-<!-- Hospitals Section-->
-<h1 class="heading"  id="Hospital"> Hospitals </h1>
- <div class="Card-container">
-       <section class="Hospital-section">
-         <div class="swiper mySwiper container">
-          <div class="swiper-wrapper content">
-            <div class="swiper-slide card">
-              <div class="card-content">
-                <div class="image">
-                  <img src="images/ExcelCare.jpg" alt="">
-                </div>
-                   <div class="name-profession">
-                  <span class="name">Apollo Excelcare Hospital</span>
-                  <span class="profession">Guwahati</span>
-                </div>
-                    <div class="button">
-                  <button class="aboutMe">About Me</button>
-                    </div>
+  <!-- Hero Section -->
+  <section class="hero" id="home" style="background-image: url(../Images/Bg1.png);">
+    <h2>Welcome to a Healthier You</h2>
+    <p>Your journey to a healthier lifestyle starts here.</p>
+    <a href="#about" class="btn">Learn More</a>
+  </section>
+
+  <!-- Search Bar Section -->
+  <form  action="/search" method="post">
+    <div class="search-bar">
+      <div class="search-container">
+        <input type="text" name="treatment" id="search-query" placeholder="Type your disease... ">
+        <button type="submit" id="search-btn"><i class="fa fa-search"></i></button>
+      </div>
+      <p class="search-hint">Search for finding the right hospital for a particular illness!</p>
+    </div>
+  </form>
+
+
+  <!-- Search Results Section (Will be populated dynamically) -->
+  <section class="search-results" id="search-results">
+    <div class="container">
+      <!-- Results will be inserted here dynamically -->
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about" style="background-image: url(../Images/AbBg2.png);">
+    <div class="container">
+      <h2>About Us</h2>
+      <p> Welcome to MediGuide, your trusted partner in navigating the healthcare landscape. Our mission is to bridge
+        the gap between patients and the right medical facilities, ensuring that you receive the best care for your
+        specific needs.
+      <p><i> At MediGuide, we understand that finding the right hospital for a particular illness can be a daunting and
+          complex task.</p></i>
+      <p> Our innovative platform is designed to simplify this process by providing tailored recommendations based on
+        your unique medical condition. Whether you're seeking specialized treatment, advanced diagnostics, or expert
+        care, MediGuide is here to guide you every step of the way.
+      <p> Our team is dedicated to harnessing the power of technology and medical data to deliver accurate and reliable
+        hospital information. We partner with a network of top healthcare providers and use a comprehensive database to
+        ensure that our recommendations are both relevant and up-to-date.
+        With MediGuide, you can focus on what truly matters – your health and well-being. Let us take the guesswork out
+        of finding the right hospital, so you can receive the quality care you deserve. </p>
+    </div>
+  </section>
+
+  <!-- Hospitals Section-->
+  <h1 class="heading" id="Hospital"> Hospitals </h1>
+  <div class="Card-container">
+    <section class="Hospital-section">
+      <div class="swiper mySwiper container">
+        <div class="swiper-wrapper content">
+          <div class="swiper-slide card">
+            <div class="card-content">
+              <div class="image">
+                <img src="Images/HospitalPic/ExcelCare.jpg" alt="">
+              </div>
+              <div class="name-profession">
+                <span class="name">Apollo Hospital</span>
+                <span class="profession">Guwahati</span>
+              </div>
+              <div class="button">
+                <button class="aboutMe"
+                  onclick="window.location.href='https://www.google.com/maps/dir//NH-37,+near+Ganesh+Mandir,+Paschim+Boragaon,+Guwahati,+Assam+781033/@26.1276808,91.5988615,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x375a5caa07107c03:0x9cb67e61d2845b91!2m2!1d91.681263!2d26.1277042?entry=ttu&g_ep=EgoyMDI0MTExMi4wIKXMDSoASAFQAw%3D%3D'">Get
+                  Direction</button>
               </div>
             </div>
-           
-            <div class="swiper-slide card">
-              <div class="card-content">
-                <div class="image">
-                  <img src="images/Nemcare.jpg" alt="">
-                </div>
-                    <div class="name-profession">
-                  <span class="name">Nemcare Hospital</span>
-                  <span class="profession">Guwahati</span>
-                </div>
-                 <div class="button">
-                  <button class="aboutMe">About Me</button> 
-                </div>
-              </div>
-            </div>
-            
-            
-            <div class="swiper-slide card">
-              <div class="card-content">
-                <div class="image">
-                  <img src="images/Pratiksha.jpg" alt="">
-                </div>
-                  <div class="name-profession">
-                  <span class="name">Pratiksha Hospital</span>
-                  <span class="profession">Guwahati</span>
-                </div>
-                <div class="button">
-                  <button class="aboutMe">About Me</button>
-                </div>
-              </div>
-            </div>
-            
-            
-            <div class="swiper-slide card">
-              <div class="card-content">
-                <div class="image">
-                  <img src="images/DownTown.jpg" alt="">
-                </div>
-                      <div class="name-profession">
-                  <span class="name">Down Town Hospital</span>
-                  <span class="profession">Guwahati</span>
-                </div>
-                 <div class="button">
-                  <button class="aboutMe">About Me</button>
-                </div>
-              </div>
-            </div>
-           
-           
-            <div class="swiper-slide card">
-              <div class="card-content">
-                <div class="image">
-                  <img src="images/GhyMetro.jpg" alt="">
-                </div>
-                  <div class="name-profession">
-                  <span class="name">Guwahati Metro Hospital</span>
-                  <span class="profession">Guwahati</span>
-                </div>
-                    <div class="button">
-                  <button class="aboutMe">About Me</button>
-                 </div>
-              </div>
-            </div>
-
-
-            <div class="swiper-slide card">
-              <div class="card-content">
-                <div class="image">
-                  <img src="images/GNRC.jpg" alt="">
-                </div>
-                  <div class="name-profession">
-                  <span class="name">GNRC Hospital</span>
-                  <span class="profession">Guwahati</span>
-                </div>
-                 <div class="button">
-                  <button class="aboutMe">About Me</button>
-                 </div>
-              </div>
-            </div>
-
-
-            <div class="swiper-slide card">
-              <div class="card-content">
-                <div class="image">
-                  <img src="/images/HealthCity.jpg" alt="">
-                </div>
-                  <div class="name-profession">
-                  <span class="name">Health City Hospital</span>
-                  <span class="profession">Guwahati</span>
-                </div>
-                 <div class="button">
-                  <button class="aboutMe">About Me</button>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="swiper-slide card">
-              <div class="card-content">
-                <div class="image">
-                  <img src="/images/Narayana.jpg" alt="">
-                </div>
-                  <div class="name-profession">
-                  <span class="name">Narayana Hospital</span>
-                  <span class="profession">Guwahati</span>
-                </div>                    <div class="button">
-                  <button class="aboutMe">About Me</button>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="swiper-slide card">
-              <div class="card-content">
-                <div class="image">
-                  <img src="/images/Hayat.jpg" alt="">
-                </div>
-                <div class="name-profession">
-                  <span class="name">Hayat Hospital</span>
-                  <span class="profession">Guwahati</span>
-                </div>
-                <div class="button">
-                  <button class="aboutMe">About Me</button>
-                </div>
-              </div>
-            </div>
-
           </div>
-        </div>
-    
-        <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
-      </section>  
 
-       <!-- About Section -->
-    
-       <section class="About-section"> 
-        <div class="">
-            <div class="Abouttext" id="AboutText">
-                <div class=" align-items-center"> 
-                     
-                         <h1 class="h1"> About Us </h1><br>
-                      <h5 class="h5"> Welcome to MediGuide, your trusted partner in navigating the healthcare landscape. Our mission is to bridge the gap between patients and the right medical facilities, ensuring that you receive the best care for your specific needs.</h5>
-                      <p class="p1"> At MediGuide, we understand that finding the right hospital for a particular illness can be a daunting and complex task. Our innovative platform is designed to simplify this process by providing tailored recommendations based on your unique medical condition. Whether you're seeking specialized treatment, advanced diagnostics, or expert care, MediGuide is here to guide you every step of the way. </p>
-                      <p class="p2"> Our team is dedicated to harnessing the power of technology and medical data to deliver accurate and reliable hospital information. We partner with a network of top healthcare providers and use a comprehensive database to ensure that our recommendations are both relevant and up-to-date.
-                          <br> With MediGuide, you can focus on what truly matters – your health and well-being. Let us take the guesswork out of finding the right hospital, so you can receive the quality care you deserve. </p>
-                    </div> 
-              </div> 
+
+          <div class="swiper-slide card">
+            <div class="card-content">
+              <div class="image">
+                <img src="Images/HospitalPic/Nemcare.jpg" alt="">
+              </div>
+              <div class="name-profession">
+                <span class="name">Nemcare Hospital</span>
+                <span class="profession">Guwahati</span>
+              </div>
+              <div class="button">
+                <button class="aboutMe"
+                  onclick="window.location.href='https://www.google.com/maps/dir//Nemcare+Super+Speciality+Hospital,+GMC+Hospital+Road,+Bhangagarh,+Guwahati,+Assam/@26.1640628,91.7277244,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x375a5973cfd6f78f:0x814e2535ffd54a1b!2m2!1d91.7689242!2d26.1640687?entry=ttu&g_ep=EgoyMDI0MTExMi4wIKXMDSoASAFQAw%3D%3D'">Get
+                  Direction</button>
+              </div>
             </div>
-        </div>
-    </section>
-  
-  <hr>
-  <!-- Contact Container -->
-  <div class="containerrr">
-    <span class="big-circle"></span>
-    <img src="img/shape.png" class="square" alt="" />
-    <div class="form">
-      <div class="contact-info">
-        <h3 class="title">Let's get in touch</h3>
-        <p class="text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-          dolorum adipisci recusandae praesentium dicta!
-        </p>
+          </div>
 
-        <div class="info">
-          <div class="information">
-            <img src="img/location.png" class="icon" alt="" />
-            <p>Guwahati</p>
-          </div>
-          <div class="information">
-            <img src="img/email.png" class="icon" alt="" />
-            <p>lorem@Hasi.com</p>
-          </div>
-          <div class="information">
-            <img src="img/phone.png" class="icon" alt="" />
-            <p>+91 123-456-789</p>
-          </div>
-        </div>
 
-        <div class="social-media">
-          <p>Connect with us :</p>
-          <div class="social-icons">
-            <a href="#">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://in.linkedin.com/in/h4si">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
+          <div class="swiper-slide card">
+            <div class="card-content">
+              <div class="image">
+                <img src="Images/HospitalPic/Pratiksha.jpg" alt="">
+              </div>
+              <div class="name-profession">
+                <span class="name">Pratiksha Hospital</span>
+                <span class="profession">Guwahati</span>
+              </div>
+              <div class="button">
+                <button class="aboutMe"
+                  onclick="window.location.href='https://www.google.com/maps/dir//Pratiksha+Hospitals,+VIP+Road,+Borbari,+Guwahati,+Assam/@26.1584896,91.7706726,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x375a58ed484ce947:0xddb45394ff390048!2m2!1d91.8118724!2d26.1584955?entry=ttu&g_ep=EgoyMDI0MTExMi4wIKXMDSoASAFQAw%3D%3D'">Get
+                  Direction</button>
+              </div>
+            </div>
           </div>
+
+
+          <div class="swiper-slide card">
+            <div class="card-content">
+              <div class="image">
+                <img src="Images/HospitalPic/DownTown.jpg" alt="">
+              </div>
+              <div class="name-profession">
+                <span class="name">Down Town Hospital</span>
+                <span class="profession">Guwahati</span>
+              </div>
+              <div class="button">
+                <button class="aboutMe"
+                  onclick="window.location.href='https://www.google.com/maps/dir//down+town+hospital,+GS+Road,+Bormotoria,+Guwahati,+Assam/@26.1386248,91.7583886,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x375a58da452a4b35:0x12fc40f65c6d1a5c!2m2!1d91.7995884!2d26.1386307?entry=ttu&g_ep=EgoyMDI0MTExMi4wIKXMDSoASAFQAw%3D%3D'">Get
+                  Direction</button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="swiper-slide card">
+            <div class="card-content">
+              <div class="image">
+                <img src="Images/HospitalPic/GhyMetro.jpg" alt="">
+              </div>
+              <div class="name-profession">
+                <span class="name">Guwahati Metro Hospital</span>
+                <span class="profession">Guwahati</span>
+              </div>
+              <div class="button">
+                <button class="aboutMe"
+                  onclick="window.location.href='https://www.google.com/maps/dir//Guwahati+Metro+Hospital,+opp.+Bodoland+Guest+House,+Uday+Nagar,+Guwahati,+Assam/@26.1174278,91.7745943,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x375a5f82dbb8ea93:0xacbf82ab685a3d45!2m2!1d91.8157941!2d26.1174337?entry=ttu&g_ep=EgoyMDI0MTExMi4wIKXMDSoASAFQAw%3D%3D'">Get
+                  Direction</button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="swiper-slide card">
+            <div class="card-content">
+              <div class="image">
+                <img src="Images/HospitalPic/GNRC.jpg" alt="">
+              </div>
+              <div class="name-profession">
+                <span class="name">GNRC Hospital</span>
+                <span class="profession">Guwahati</span>
+              </div>
+              <div class="button">
+                <button class="aboutMe"
+                  onclick="window.location.href='https://www.google.com/maps/dir//GNRC+Hospitals,+Dispur+Unit,+GNRC+Road,+Dispur,+Rukmini+Gaon,+Guwahati,+Assam/@26.1392926,91.7533699,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x375a58d85b0d032f:0x5e121ca48b961c42!2m2!1d91.7945697!2d26.1392985?entry=ttu&g_ep=EgoyMDI0MTExMi4wIKXMDSoASAFQAw%3D%3D'">Get
+                  Direction</button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="swiper-slide card">
+            <div class="card-content">
+              <div class="image">
+                <img src="Images/HospitalPic/HealthCity.jpg" alt="">
+              </div>
+              <div class="name-profession">
+                <span class="name">Health City Hospital</span>
+                <span class="profession">Guwahati</span>
+              </div>
+              <div class="button">
+                <button class="aboutMe"
+                  onclick="window.location.href='https://www.google.com/maps/dir//HEALTH+CITY+HOSPITAL,+opp.+Bodoland+Guest+House,+Uday+Nagar,+Khanapara,+Guwahati,+Assam/@26.1175782,91.7742751,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x375a5f4972775d49:0xc2bb138442c92a59!2m2!1d91.8154749!2d26.1175841?entry=ttu&g_ep=EgoyMDI0MTExMi4wIKXMDSoASAFQAw%3D%3D'">Get
+                  Direction</button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="swiper-slide card">
+            <div class="card-content">
+              <div class="image">
+                <img src="Images/HospitalPic/Narayana.jpg" alt="">
+              </div>
+              <div class="name-profession">
+                <span class="name">Narayana Hospital</span>
+                <span class="profession">Guwahati</span>
+              </div>
+              <div class="button">
+                <button class="aboutMe"
+                  onclick="window.location.href='https://www.google.com/maps/dir//Narayana+Hospital,+Guwahati,+Amingaon,+Guwahati,+Assam/@26.2077102,91.6364604,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x375a5ab28a679979:0xb0b8162cac1a1986!2m2!1d91.6776602!2d26.2077161?entry=ttu&g_ep=EgoyMDI0MTExMi4wIKXMDSoASAFQAw%3D%3D'">Get
+                  Direction</button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="swiper-slide card">
+            <div class="card-content">
+              <div class="image">
+                <img src="Images/HospitalPic/Hayat.jpg" alt="">
+              </div>
+              <div class="name-profession">
+                <span class="name">Hayat Hospital</span>
+                <span class="profession">Guwahati</span>
+              </div>
+              <div class="button">
+                <button class="aboutMe"
+                  onclick="window.location.href='https://www.google.com/maps/dir//Hayat+Hospital,+Kahilipara+Main+Road,+Odalbakra,+Kahilipara,+Guwahati,+Assam/@26.1390843,91.7050168,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x375a5be51bf57fbf:0xfdf263c0492a4389!2m2!1d91.7462166!2d26.1390902?entry=ttu&g_ep=EgoyMDI0MTExMi4wIKXMDSoASAFQAw%3D%3D'">Get
+                  Direction</button>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-      <div class="contact-form">
-        <span class="circle one"></span>
-        <span class="circle two"></span>
-        <form action="https://api.web3forms.com/submit" method="POST" >
-          <input type="hidden" name="access_key" value="4268303c-fa5c-48d8-8a3f-1a41ff6aa1f6">
-          <h3 class="title">Contact us</h3>
-          <div class="input-container">
-            <input type="text" name="name" class="input" />
-            <label for="">Username</label>
-            <span>Username</span>
+
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </section>
+  </div>
+
+  <!-- Contact us Section-->
+  <section class="section-bg" style="background-image: url(https://i.ibb.co/9p3Cnk9/slider-2.jpg);"
+    data-scroll-index="7">
+    <div class="overlay pt-100 pb-100 ">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 d-flex align-items-center">
+            <div class="contact-info">
+              <h2 class="contact-title">Have Any Questions?</h2>
+              <p>We're here to help! Reach out to us anytime, and we'll get back to you as soon as possible. Contact us
+                today!</p>
+              <ul class="contact-info">
+                <li>
+                  <div class="info-left">
+                    <i class="fas fa-mobile-alt"></i>
+                  </div>
+                  <div class="info-right">
+                    <h4>+919706****16</h4>
+                  </div>
+                </li>
+                <li>
+                  <div class="info-left">
+                    <i class="fas fa-at"></i>
+                  </div>
+                  <div class="info-right">
+                    <h4>hasibultarifahmed@zohomail.in</h4>
+                  </div>
+                </li>
+                <li>
+                  <div class="info-left">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="info-right">
+                    <h4>Panjabari, Guwahati, Assam, INDIA</h4>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="input-container">
-            <input type="email" name="email" class="input" />
-            <label for="">Email</label>
-            <span>Email</span>
+          <div class="col-lg-6 d-flex align-items-center">
+            < class="contact-form">
+              <!--Contact Form-->
+              <form action="https://api.web3forms.com/submit" <form id='contact-form' method='POST'><input type='hidden'
+                  name='access_key' value='4268303c-fa5c-48d8-8a3f-1a41ff6aa1f6' />
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="text" name="name" class="form-control" id="first-name"
+                        placeholder="Enter Your Name *" required="required">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="email" name="email" class="form-control" id="email" placeholder="Enter Your Email *"
+                        required="required">
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <textarea rows="4" name="message" class="form-control" id="description"
+                        placeholder="Enter Your Message *" required="required"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <!--contact button-->
+                    <button class="btn-big btn btn-bg">
+                      Send Us <i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
-          <div class="input-container">
-            <input type="tel" name="phone" class="input" />
-            <label for="">Phone</label>
-            <span>Phone</span>
-          </div>
-          <div class="input-container textarea">
-            <textarea name="message" class="input"></textarea>
-            <label for="">Message</label>
-            <span>Message</span>
-          </div>
-          
-          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-          <input type="submit" value="submit" class="btn" />
-        </form>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-    <!-- Footer Section -->
-    <footer class="bg-light text-center text-lg-start mt-5">
-        <div class="text-center p-3">
-            © 2024 Hasi. All rights reserved.
+  <!-- Footer -->
+  <footer class="site-footer">
+    <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by
+            <a href="https://www.instagram.com/hasibultarifahmed_/profilecard/?igsh=NWUycnJhazJnNmM1">Hasibul</a>.
+          </p>
         </div>
-    </footer>
-  </div>
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Swiper JS -->
-   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-   <script src="/javascripts/swiper.js"></script>
-   <script src="/javascripts/form.js"></script>
-   <script src=""> </script>
-</body>
-</html>
 
-<!-- class="search-bar" id="Searchbox" -->
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="https://www.facebook.com/hasibultahmed"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li><a class="twitter" href="https://snapchat.com/t/0IjydFzo"><i class="fa fa-snapchat"></i></a></li>
+            <li><a class="dribbble" href="https://www.instagram.com/h4si.ta"><i class="fa fa-instagram"></i></a></li>
+            <li><a class="linkedin" href="https://www.linkedin.com/in/hasibultarifahmed"><i
+                  class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="./javascripts/swiper.js"></script>
+
+</body>
+
+</html>
