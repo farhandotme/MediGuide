@@ -1,175 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MediGuide</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Link CSS-->
-    <link href="/stylesheets/style.css" rel="stylesheet" />
-    <!-- Link Swiper's CSS -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper/swiper-bundle.min.css"
-    />
-    <!-- Fontawesome CDN Link -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
 
-  <body>
-    <div class="Website">
-      <!-- Navigation Bar -->
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-          <a class="navbar-brand" href="/">MediGuide</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#hero-text">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#Hospital">Hospitals</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#AboutText">About Us</a>
-              </li>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEDIGUIDE</title>
 
-              <li class="nav-item">
-                <a class="nav-link" href="#contact-info">Contact</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
 
-      <!-- Header Section -->
-      <section class="header-section">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <h1 class="hero-text">
-                Find the Perfect Hospital for Your Health Needs
-              </h1>
-              <p class="mt-3">
-                Search for specialized care tailored to your condition, and get
-                the best treatment options instantly.
-              </p>
-              <!-- search box-->
-              <form action="/search" method="post">
-                <div class="search-container">
-                  <input
-                    type="text"
-                    name="treatment"
-                    class="search-box"
-                    placeholder="Search..."
-                  />
-                  <button type="submit" class="search-btn">Search</button>
-                </div>
-              </form>
-            </div>
-            <div class="col-md-6 text-center">
-              <img src="images/doctor.png" alt="h4si" class="img-fluid" />
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- Hospitals Section-->
-      <% if (typeof hospitals !== 'undefined' && hospitals.length > 0) { %>
-      <h4 class="text-center text-xl mb-4">
-        Search Results for "<b><%= treatment %></b>"
-      </h4>
+  <!-- Add Font Awesome for search icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-      <!-- Container for the hospital cards aligned to the left -->
-      <div class="flex flex-wrap gap-4 ml-4 justify-start">
-        <% hospitals.forEach((hospital) => { %>
-        <div
-          class="w-80 bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden"
-        >
-          <!-- Hospital Image -->
-          <div class="w-full h-70 bg-gray-200">
-            <img
-              src="data:image/jpeg;base64,<%= hospital.profile.toString('base64') %>"
-              alt="<%= hospital.name %>"
-              class="object-cover w-full h-full"
-            />
-          </div>
 
-          <!-- Hospital Name and Address -->
-          <div class="p-2">
-            <h5 class="text-md font-semibold text-gray-800 truncate">
-              <%= hospital.name %>
-            </h5>
-            <p class="text-gray-600 text-sm mt-1 truncate">
-              <%= hospital.address %>
-            </p>
-          </div>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Link CSS-->
+  <link href="/stylesheets/style.css" rel="stylesheet">
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-          <!-- Buttons for Directions, Appointment, and About Me -->
-          <div class="flex justify-between px-2 pb-2">
-            <!-- Directions Button -->
-            <button
-              class="bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-600 transition-all text-xs"
-              onclick="window.open('<%= hospital.mapLocation %>', '_blank')"
-            >
-              Directions
-            </button>
-
-            <!-- Appointment Button -->
-            <button
-              class="bg-blue-500 text-white px-5 py-1 rounded-md hover:bg-blue-600 transition-all text-xs"
-              onclick="window.open('<%= hospital.link %>', '_blank')"
-            >
-              Appointment
-            </button>
-          </div>
-
-          <!-- About Me Button -->
-          
-        </div>
-        <% }) %>
-      </div>
-      <% } else { %>
-      <p class="text-center text-lg text-gray-700">
-        No results found for "<b><%= treatment %></b>".
-      </p>
-      <% } %>
-
-      <!-- Footer Section -->
-      <footer class="bg-light text-center text-lg-start mt-5">
-        <div class="text-center p-3">© 2024 Hasi. All rights reserved.</div>
-      </footer>
+<body>
+  <header>
+    <div class="logo">
+      <h1><i class="fas fa-stethoscope"></i> MEDIGUIDE</h1>
     </div>
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Swiper JS -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="/javascripts/swiper.js"></script>
-    <script src="/javascripts/form.js"></script>
-    <script src=""></script>
-  </body>
-</html>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#Hospital">Hospitals</a></li>
+        <li><a href="#contact-form">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<!-- class="search-bar" id="Searchbox" -->
+  <!-- Hero Section -->
+  <section class="hero" id="home" style="background-image: url(../Images/Bg1.png);">
+    <h2>Welcome to a Healthier You</h2>
+    <p>Your journey to a healthier lifestyle starts here.</p>
+    <a href="#about" class="btn">Learn More</a>
+  </section>
+
+  <!-- Search Bar Section -->
+  <form  action="/search" method="post">
+    <div class="search-bar">
+      <div class="search-container">
+        <input type="text" name="treatment" id="search-query" placeholder="Type your disease... ">
+        <button type="submit" id="search-btn"><i class="fa fa-search"></i></button>
+      </div>
+      <p class="search-hint">Search for finding the right hospital for a particular illness!</p>
+    </div>
+  </form>
+
+
+  <!-- Search Results Section (Will be populated dynamically) -->
+  <section class="search-results" id="search-results">
+    <div class="container">
+      <% if (typeof hospitals !== 'undefined' && hospitals.length > 0) { %>
+        <h4 class="text-center text-xl mb-4">
+          Search Results for "<b><%= treatment %></b>"
+        </h4>
+    
+        <!-- Container for the hospital cards aligned to the left -->
+        <div class="flex flex-wrap gap-4 ml-4 justify-start">
+          <% hospitals.forEach((hospital) => { %>
+          <div
+            class="w-80 bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden"
+          >
+            <!-- Hospital Image -->
+            <div class="w-full h-70 bg-gray-200">
+              <img
+                src="data:image/jpeg;base64,<%= hospital.profile.toString('base64') %>"
+                alt="<%= hospital.name %>"
+                class="object-cover w-full h-full"
+              />
+            </div>
+    
+            <!-- Hospital Name and Address -->
+            <div class="p-2">
+              <h5 class="text-md font-semibold text-gray-800 truncate">
+                <%= hospital.name %>
+              </h5>
+              <p class="text-gray-600 text-sm mt-1 truncate">
+                <%= hospital.address %>
+              </p>
+            </div>
+    
+            <!-- Buttons for Directions, Appointment, and About Me -->
+            <div class="flex justify-between px-2 pb-2">
+              <!-- Directions Button -->
+              <button
+                class="bg-green-500 text-white px-4 py-1 rounded-md hover:bg-green-600 transition-all text-xs"
+                onclick="window.open('<%= hospital.mapLocation %>', '_blank')"
+              >
+                Directions
+              </button>
+    
+              <!-- Appointment Button -->
+              <button
+                class="bg-blue-500 text-white px-3 py-3 rounded-md hover:bg-blue-600 transition-all text-xs"
+                onclick="window.open('<%= hospital.link %>', '_blank')"
+              >
+                Appointment
+              </button>
+            </div>
+    
+            <!-- About Me Button -->
+            
+          </div>
+          <% }) %>
+        </div>
+        <% } else { %>
+        <p class="text-center text-lg text-gray-700">
+          No results found for "<b><%= treatment %></b>".
+        </p>
+        <% } %>
+    </div>
+  </section>
+
+  
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by
+            <a href="https://www.instagram.com/hasibultarifahmed_/profilecard/?igsh=NWUycnJhazJnNmM1">Hasibul</a>.
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="https://www.facebook.com/hasibultahmed"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li><a class="twitter" href="https://snapchat.com/t/0IjydFzo"><i class="fa fa-snapchat"></i></a></li>
+            <li><a class="dribbble" href="https://www.instagram.com/h4si.ta"><i class="fa fa-instagram"></i></a></li>
+            <li><a class="linkedin" href="https://www.linkedin.com/in/hasibultarifahmed"><i
+                  class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="./javascripts/swiper.js"></script>
+
+</body>
+
+</html>
