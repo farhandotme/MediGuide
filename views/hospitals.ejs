@@ -59,68 +59,71 @@
   <!-- Search Results Section (Will be populated dynamically) -->
   <section class="search-results" id="search-results">
     <div class="container">
-      <% if (typeof hospitals !== 'undefined' && hospitals.length > 0) { %>
+      <% if (message) { %>
+        <p class="text-center text-lg text-gray-700"><%= message %></p>
+      <% } else { %>
         <h4 class="text-center text-xl mb-4">
           Search Results for "<b><%= treatment %></b>"
         </h4>
-    
-        <!-- Container for the hospital cards aligned to the left -->
+        
         <div class="flex flex-wrap gap-4 ml-4 justify-start">
           <% hospitals.forEach((hospital) => { %>
-          <div
-            class="w-80 bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden"
-          >
-            <!-- Hospital Image -->
-            <div class="w-full h-70 bg-gray-200">
-              <img
-                src="data:image/jpeg;base64,<%= hospital.profile.toString('base64') %>"
-                alt="<%= hospital.name %>"
-                class="object-cover w-full h-full"
-              />
+            <div
+              class="flex flex-col justify-between w-80 bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden"
+            >
+              <!-- Hospital Image -->
+              <div class="w-full h-70 bg-gray-200">
+                <% if (hospital.profile) { %>
+                  <img
+                    src="data:image/jpeg;base64,<%= hospital.profile.toString('base64') %>"
+                    alt="<%= hospital.name %>"
+                    class="object-cover w-full h-full"
+                  />
+                <% } else { %>
+                  <img
+                    src="/images/default-hospital.jpg"
+                    alt="Default Image"
+                    class="object-cover w-full h-full"
+                  />
+                <% } %>
+              </div>
+  
+              <!-- Hospital Name and Address -->
+              <div class="p-2">
+                <h5 class="text-md font-semibold text-gray-800 truncate">
+                  <%= hospital.name %>
+                </h5>
+                <p class="text-gray-600 text-sm mt-1">
+                  <%= hospital.address %>
+                </p>
+              </div>
+  
+              <!-- Treatment Price -->
+              <div class="p-2">
+                <p>Starting from: ₹<%= hospital.treatment[0]?.price || "N/A" %></p>
+              </div>
+  
+              <!-- Buttons for Links -->
+              <div class="flex justify-start gap-3 px-2 pb-2">
+                <button
+                  class="bg-blue-500 text-white px-3 py-3 rounded-md hover:bg-blue-600 transition-all text-xs"
+                  onclick="window.open('<%= hospital.link %>', '_blank')"
+                >
+                  Appointment
+                </button>
+                <button
+                  class="bg-green-500 text-white px-4 py-1 rounded-md hover:bg-green-600 transition-all text-xs"
+                  onclick="window.open('<%= hospital.mapLocation %>', '_blank')"
+                >
+                  Directions
+                </button>
+              </div>
             </div>
-    
-            <!-- Hospital Name and Address -->
-            <div class="p-2">
-              <h5 class="text-md font-semibold text-gray-800 truncate">
-                <%= hospital.name %>
-              </h5>
-              <p class="text-gray-600 text-sm mt-1 truncate">
-                <%= hospital.address %>
-              </p>
-            </div>
-    
-            <!-- Buttons for Directions, Appointment, and About Me -->
-            <div class="flex justify-start gap-3 px-2 pb-2">
-              <!-- Directions Button -->
-              <button
-                class="bg-green-500  text-white px-4 py-1 rounded-md hover:bg-green-600 transition-all text-xs"
-                onclick="window.open('<%= hospital.mapLocation %>', '_blank')"
-              >
-                Directions
-              </button>
-    
-              <!-- Appointment Button -->
-              <button
-                class="bg-blue-500 text-white px-3 py-3 rounded-md hover:bg-blue-600 transition-all text-xs"
-                onclick="window.open('<%= hospital.link %>', '_blank')"
-              >
-                Appointment
-              </button>
-            </div>
-    
-            <!-- About Me Button -->
-            
-          </div>
           <% }) %>
         </div>
-        <% } else { %>
-        <p class="text-center text-lg text-gray-700">
-          No results found for "<b><%= treatment %></b>".
-        </p>
-        <% } %>
+      <% } %>
     </div>
   </section>
-
   
 
   <!-- Footer -->

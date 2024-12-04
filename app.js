@@ -40,21 +40,19 @@ app.post("/create", upload.single("image"), async (req, res) => {
       link,
     } = req.body;
 
-    // Create treatment array with name and price
     const treatments = treatmentName.map((name, index) => ({
       name,
       price: treatmentPrice[index],
     }));
 
-    // Create hospital record in the database
     const createDetails = await hospitalModel.create({
       name,
       phoneNo,
       address,
       treatment: treatments,
-      mapLocation, // Added mapLocation field
-      link, // Added link field
-      profile: req.file ? req.file.buffer : undefined, // Profile image
+      mapLocation,
+      link,
+      profile: req.file ? req.file.buffer : undefined,
     });
 
     res.redirect("/inputdetails");
@@ -65,17 +63,43 @@ app.post("/create", upload.single("image"), async (req, res) => {
 });
 
 app.post("/search", async (req, res) => {
-  const treatmentName = req.body.treatment.toLowerCase();
+  const treatmentName = req.body.treatment;
 
   try {
-    const hospitals = await hospitalModel.find({
-      "treatment.name": { $regex: new RegExp(treatmentName, "i") },
-    });
+    const hospitals = await hospitalModel.find(
+      { "treatment.name": { $regex: new RegExp(treatmentName, "i") } },
+      {
+        name: 1,
+        address: 1,
+        phoneNo: 1,
+        profile: 1,
+        "treatment.$": 1, 
+        link: 1,
+        mapLocation: 1,
+      }
+    );
 
-    res.render("hospitals", { hospitals, treatment: treatmentName }); 
+    if (!hospitals || hospitals.length === 0) {
+      return res.render("hospitals", {
+        hospitals: [],
+        treatment: treatmentName,
+        message: `No hospitals found offering treatment: ${treatmentName}`,
+      });
+    }
+
+    res.render("hospitals", {
+      hospitals,
+      treatment: treatmentName,
+      message: null,
+    });
   } catch (error) {
-    console.error("Error searching for hospitals:", error);
-    res.status(500).send("Error searching for hospitals");
+    console.error("Error searching for hospitals:", error.message);
+
+    res.status(500).render("hospitals", {
+      hospitals: [],
+      treatment: treatmentName,
+      message: "An error occurred. Please try again later.",
+    });
   }
 });
 
